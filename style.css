@@ -1,0 +1,119 @@
+:root {
+    --pink: #ffb6c1;
+    --dark-pink: #ff1493;
+    --glass: rgba(255, 255, 255, 0.55);
+}
+
+/* Hide scrollbar */
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+html::-webkit-scrollbar {
+    display: none;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    background-color: #fff0f5; 
+    font-family: 'Playfair Display', serif; 
+    overflow-x: hidden;
+    color: #4a4a4a;
+    position: relative;
+}
+
+.dancing-font { font-family: 'Dancing Script', cursive; }
+
+/* SVG CANVAS */
+#svg-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+#path-line {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    /* Smoothly animate when the line draws OR when cards move/resize */
+    transition: stroke-dashoffset 0.1s linear, d 0.2s ease;
+}
+
+#clock-container {
+    position: fixed;
+    top: 20px; right: 20px;
+    z-index: 100;
+    text-align: center;
+    padding: 15px 25px;
+    border-radius: 30px;
+}
+
+#clock { font-size: 1.2rem; font-weight: bold; color: var(--dark-pink); }
+
+.hero, .memory-section, #final-ask {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px;
+}
+
+.glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2);
+    border-radius: 50px;
+}
+
+.media-card, .hero-card { width: 95%; max-width: 850px; padding: 35px; }
+
+.media-card img, .media-card video { 
+    width: 100%; 
+    min-height: 300px; /* Placeholder height while loading */
+    border-radius: 40px; 
+    display: block; 
+    object-fit: cover;
+}
+
+.caption { 
+    font-family: 'Dancing Script', cursive; 
+    font-size: 2rem; 
+    text-align: center; 
+    margin-top: 25px; 
+    color: var(--dark-pink); 
+}
+
+.note-box { display: flex; justify-content: center; padding: 80px 20px; }
+.note-card { 
+    padding: 30px 50px; 
+    border: 2px solid var(--pink); 
+    max-width: 550px; 
+    text-align: center; 
+    border-radius: 40px; 
+}
+
+#question-card { padding: 60px; text-align: center; width: 90%; max-width: 650px; }
+
+#response-image-container img {
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 25px; 
+    border: 5px solid var(--dark-pink);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.button-container { margin-top: 30px; display: flex; justify-content: center; gap: 25px; }
+
+.btn { width: 150px; height: 55px; border: none; border-radius: 30px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.2s; }
+.yes { background: var(--dark-pink); color: white; }
+.no { background: #eee; color: #888; }
